@@ -4,17 +4,17 @@ function findAll(value, array) {
   array.forEach(element => {
     if (Object.is(element, value)) return newArray.push(element);
     if (value == null && element == null) return newArray.push(element);
-    if (typeof value == "boolean") {
-      if (element === value) return newArray.push(element);
-    }
+    if (typeof value == "boolean" && element === value)
+      return newArray.push(element);
     if (
       typeof value == "string" &&
       value.trim() != "" &&
       typeof element == "number" &&
-      !Object.is(-0, element)
-    ) {
-      if (element == value) return newArray.push(element);
-    }
+      !Object.is(-0, element) &&
+      element == value
+    )
+      return newArray.push(element);
+
     if (
       typeof value == "number" &&
       !Object.is(value, -0) &&
@@ -22,10 +22,10 @@ function findAll(value, array) {
       !Object.is(value, Infinity) &&
       !Object.is(value, -Infinity) &&
       typeof element == "string" &&
-      element.trim() != ""
-    ) {
-      if (element == value) return newArray.push(element);
-    }
+      element.trim() != "" &&
+      element == value
+    )
+      return newArray.push(element);
   });
   return newArray;
 }
