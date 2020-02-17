@@ -24,6 +24,7 @@ var remindUnpaid = recordIds =>
   printRecords(
     recordIds.filter(studentId => !getStudentFromId(studentId).paid)
   );
+s;
 
 // ********************************
 
